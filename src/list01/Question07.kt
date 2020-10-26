@@ -1,3 +1,5 @@
+package list01
+
 import kotlin.math.ln
 
 object PrimeNumber {
@@ -17,11 +19,8 @@ object PrimeNumber {
         /* Steps indicates how many steps we need to found the prime numbers that we want. After each instruction,
          * we increment steps.
          */
-        var steps = 0
         var externalLoop = 0
         var innerLoop = 0
-        var externalcondition = 0
-        var innercondition = 0
 
         /* The variable i inside for loop starts in two because we know previously that 0 and 1 are not prime numbers.*/
         for (i in 2..size) {
@@ -46,9 +45,9 @@ object PrimeNumber {
             }
             externalLoop++
         }
-        val total = externalLoop + innerLoop + externalcondition + innercondition
-        println("${nth};${externalLoop};${innerLoop};${externalcondition};${innercondition};$total")
-        return externalLoop + innerLoop + externalcondition + innercondition
+        val total = externalLoop + innerLoop
+        println("${nth};${externalLoop};${innerLoop};$total")
+        return externalLoop + innerLoop
     }
 
     private fun sRange(nth: Int): Int{

@@ -1,25 +1,11 @@
-package lista03
+package list03
 
 import algorithms.ClosedFormFib
 import algorithms.IterativeFib
 import algorithms.RecursiveFib
 import misc.AnswerLong
-import java.util.*
 
 fun main() {
-    /*print("Fibonacci Sequences\nPlease, enter a positive number: ")
-    try {
-        val n = Scanner(System.`in`).nextLong()
-        when {
-            n >= 0 -> {
-                println("${RecursiveFib.getName()}: F($n) = ${RecursiveFib.sequence(n).steps}")
-                println("${IterativeFib.getName()}: F($n) = ${IterativeFib.sequence(n).steps}")
-                println("${ClosedFormFib.getName()}: F($n) = ${ClosedFormFib.sequence(n).steps}")
-            }
-            else -> println("Invalid number")
-        }
-    } catch (e: InputMismatchException) { println("Invalid input") }*/
-
     val n = 15
     val numbers = Array(n){ it + 1}
     val recursiveCase  = Array(n){AnswerLong()}

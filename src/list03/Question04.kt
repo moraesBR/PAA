@@ -1,6 +1,5 @@
-package lista03
+package list03
 
-import java.lang.NumberFormatException
 import java.util.*
 
 fun moveTower(discs: Int = 3, source: String = "A", target: String = "C", auxiliary:String = "B"){

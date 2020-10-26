@@ -1,4 +1,4 @@
-package lista01
+package list01
 
 import algorithms.LinearSearch
 import misc.Answer

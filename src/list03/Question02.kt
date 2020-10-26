@@ -1,13 +1,12 @@
-package lista03
+package list03
 
 import algorithms.BinarySearch
 import misc.AnswerInt
+import kotlin.random.Random
 
 fun main() {
     val n = 100
-    //val nSizes = Array(n){ 4F.pow(it+1).toInt() }
-    //val nSizes = Array(n){ 10*(it+1) }
-    val nSizes = arrayOf(30,50,100)
+    val nSizes = Array(n){ 10*(it+1) }
 
     val bestCase = Array(nSizes.size){ AnswerInt() }
     val randomCase = Array(nSizes.size){ AnswerInt() }
@@ -21,11 +20,10 @@ fun main() {
         val vector = Array(size) { 2*it }
 
         var key = vector[ (0 + vector.lastIndex)/2 ]
-        /*bestCase[index] = BinarySearch.search(vector,key)
-        print("Step ${index + 1}: $key(${bestCase[index].pos}) ")*/
+        bestCase[index] = BinarySearch.search(vector,key)
+        print("Step ${index + 1}: $key(${bestCase[index].value}) ")
 
-        //key = vector[ Random.nextInt(size - 2) + 1 ]
-        key = vector[ 1 ]
+        key = vector[ Random.nextInt(size - 2) + 1 ]
         randomCase[index] = BinarySearch.search(vector,key)
         print("$key(${randomCase[index].value}) ")
 
