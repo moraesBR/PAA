@@ -27,20 +27,6 @@ object LinearSearch : SearchAlgorithm() {
     }
 }
 
-/*
- * function binary_search(A, n, T) is
- *   L := 0
- *   R := n − 1
- *   while L ≤ R do
- *       m := floor((L + R) / 2)
- *       if A[m] < T then
- *           L := m + 1
- *       else if A[m] > T then
- *           R := m − 1
- *       else:
- *           return m
- *   return unsuccessful
- */
 object BinarySearch : SearchAlgorithm() {
     override fun <T> search(arr: Array<T>, key: T, ascending: Boolean): AnswerInt where T : Number, T : Comparable<T> {
         var left = 0
@@ -48,19 +34,19 @@ object BinarySearch : SearchAlgorithm() {
         var steps = 0L
         val ans = AnswerInt()
 
-        val isRight = if (ascending) { idx:Int -> arr[idx] < key } else { idx:Int -> arr[idx] > key }
-        val isLeft = if (ascending) { idx:Int -> arr[idx] > key } else { idx:Int -> arr[idx] < key }
+        val isRight: (Int) -> Boolean = if (ascending) { idx:Int -> arr[idx] < key } else { idx:Int -> arr[idx] > key }
+        val isLeft : (Int) -> Boolean = if (ascending) { idx:Int -> arr[idx] > key } else { idx:Int -> arr[idx] < key }
 
         while ( left <= right ){
             val center = (left + right)/2
             steps += 2
             when {
                 // one ifs + one assignment
-                isRight(center) -> { left  = center + 1; steps +=2 } // right cicle's cost equals 4 steps
+                isRight(center) -> { left  = center + 1; steps +=2 }
                 // two ifs + one assignment
-                isLeft(center)  -> { right = center - 1; steps +=3 } // left cicle's cost equals 5 steps
-                // two ifs. return doesn't count
-                else -> { ans.value = center ; ans.steps = steps; steps+=2; return ans} // finding's cost equals 5
+                isLeft(center)  -> { right = center - 1; steps +=3 }
+                // two ifs. Return doesn't count
+                else -> { ans.value = center ; ans.steps = steps; steps+=2; return ans}
             }
         }
         ans.steps = ++steps

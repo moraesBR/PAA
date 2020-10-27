@@ -11,7 +11,6 @@ fun moveTower(discs: Int = 3, source: String = "A", target: String = "C", auxili
 }
 
 fun main() {
-
     print("Hanoi Tower\nPlease, enter with a positive number of discs: ")
     try {
         val numberDisc =Scanner(System.`in`).nextInt()

@@ -2,15 +2,16 @@ package list03
 
 import algorithms.BinarySearch
 import misc.AnswerInt
+import kotlin.math.pow
 import kotlin.random.Random
 
 fun main() {
-    val n = 100
-    val nSizes = Array(n){ 10*(it+1) }
+    val n = 20
+    val nSizes = Array(n){ 2F.pow(it+1).toInt() }
 
-    val bestCase = Array(nSizes.size){ AnswerInt() }
+    val bestCase   = Array(nSizes.size){ AnswerInt() }
     val randomCase = Array(nSizes.size){ AnswerInt() }
-    val worstCase = Array(nSizes.size){ AnswerInt() }
+    val worstCase  = Array(nSizes.size){ AnswerInt() }
 
     var index = 0
 
@@ -23,7 +24,7 @@ fun main() {
         bestCase[index] = BinarySearch.search(vector,key)
         print("Step ${index + 1}: $key(${bestCase[index].value}) ")
 
-        key = vector[ Random.nextInt(size - 2) + 1 ]
+        key = vector[ Random.nextInt(size - 1) ]
         randomCase[index] = BinarySearch.search(vector,key)
         print("$key(${randomCase[index].value}) ")
 
