@@ -21,3 +21,9 @@ operator fun AnswerLong.plus(b: AnswerLong): AnswerLong{
 operator fun AnswerLong.minus(b: Int): AnswerLong{
     return AnswerLong(value-b,steps + 1L)
 }
+
+class AnswerList<T>(val items: List<T>, steps: Long = 0L): Answer(steps) where T : Number, T: Comparable<T>
+
+operator fun <T> AnswerList<T>.plus(b : AnswerList<T>): AnswerList<T> where T : Number, T: Comparable<T>{
+    return AnswerList(items + b.items, steps + b.steps)
+}
