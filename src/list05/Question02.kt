@@ -2,6 +2,7 @@ package list05
 
 import algorithms.quicksort
 import misc.Pivot
+import misc.isDescending
 import java.io.File
 import kotlin.math.log2
 import kotlin.math.pow
@@ -18,12 +19,20 @@ fun main() {
         nSizes.forEach { size ->
             val items = Array(size) { pos -> size - pos }
             val first = items.quicksort(0, items.lastIndex, Pivot.FIRST)
+            print("${items.isDescending()}\t")
+
             items.reverse()
             val middle = items.quicksort(0, items.lastIndex, Pivot.MIDDLE)
+            print("${items.isDescending()}\t")
+
             items.reverse()
             val last = items.quicksort(0, items.lastIndex, Pivot.LAST)
+            print("${items.isDescending()}\t")
+
             items.reverse()
             val random = items.quicksort(0, items.lastIndex, Pivot.RANDOM)
+            println("${items.isDescending()}")
+
             val nlogn = size * (log2(size.toFloat())).toInt()
             out.println("${size};${first};${middle};${last};${random};${nlogn}")
         }
@@ -33,12 +42,20 @@ fun main() {
         nSizes.forEach { size ->
             val items = Array(size) { pos -> pos + 1 }
             val first = items.quicksort(0, items.lastIndex, Pivot.FIRST)
+            print("${items.isDescending()}\t")
+
             items.reverse()
             val middle = items.quicksort(0, items.lastIndex, Pivot.MIDDLE)
+            print("${items.isDescending()}\t")
+
             items.reverse()
             val last = items.quicksort(0, items.lastIndex, Pivot.LAST)
+            print("${items.isDescending()}\t")
+
             items.reverse()
             val random = items.quicksort(0, items.lastIndex, Pivot.RANDOM)
+            println("${items.isDescending()}")
+
             val nlogn = size * (log2(size.toFloat())).toInt()
             out.println("${size};${first};${middle};${last};${random};${nlogn}")
         }
@@ -48,15 +65,19 @@ fun main() {
         nSizes.forEach { size ->
             var items = Array(size) { Random.nextInt(10000) }
             val first = items.quicksort(0,items.lastIndex,Pivot.FIRST)
+            print("${items.isDescending()}\t")
 
             items = Array(size) { Random.nextInt(1,10000) }
             val middle = items.quicksort(0,items.lastIndex,Pivot.MIDDLE)
+            print("${items.isDescending()}\t")
 
             items = Array(size) { Random.nextInt(1,10000) }
             val last = items.quicksort(0,items.lastIndex,Pivot.LAST)
+            print("${items.isDescending()}\t")
 
             items = Array(size) { Random.nextInt(1,10000) }
             val random = items.quicksort(0,items.lastIndex,Pivot.RANDOM)
+            println("${items.isDescending()}")
 
             val nlogn = size * (log2(size.toFloat())).toInt()
 

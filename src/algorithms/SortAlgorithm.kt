@@ -1,9 +1,6 @@
 package algorithms
 
-import misc.AnswerList
-import misc.Pivot
-import misc.invoke
-import misc.plus
+import misc.*
 import kotlin.random.Random
 
 abstract class SortAlgorithm {
@@ -198,30 +195,37 @@ object QuickSortRev : SortAlgorithm(){
 }
 
 fun <T> Array<T>.quicksort(first: Int, last: Int, type: Pivot = Pivot.FIRST): Long where T: Number, T: Comparable<T>{
-    var steps = 0L
-    var lower = first
-    var upper = last
+    var steps = 1L
+    if(first < last) {
 
-    val pivot = when(type){
-        Pivot.RANDOM -> this[Random.nextInt(first+1,last-1)]
-        Pivot.MIDDLE -> this[(first + last)/2]
-        Pivot.LAST -> this[last]
-        else -> this[first]
-    }
-
-    while (lower <= upper){
-        while (this[lower] > pivot) { lower++; steps++}
-        while (this[upper] < pivot) { upper--; steps ++}
-        if (lower <= upper) {
-            this[lower] = this[upper] { this[upper--] = this[lower++] }
-            steps += 3
+        val index = when (type) {
+            Pivot.RANDOM -> Random.nextInt(first, last)
+            Pivot.MIDDLE -> (first + last) / 2
+            Pivot.LAST -> last
+            else -> first
         }
-        steps+=4
+        this[first] = this[index] {this[index] = this[first]}
+
+        val pivot = this[first]
+        var lower = first + 1
+        var upper = last
+
+        while (lower <= upper) {
+            while (lower <= last && this[lower] >= pivot) { lower++; steps++ }
+            while (this[upper] < pivot) { upper--; steps++ }
+
+            if (lower < upper) {
+                this[lower] = this[upper] { this[upper--] = this[lower++] }
+                //steps += 3
+            }
+            steps += 4
+        }
+        this[first] = this[upper] {this[upper] = this[first]}
+
+        if (first < upper - 1) steps += this.quicksort(first, upper - 1, type)
+        if (upper < last) steps += this.quicksort(upper + 1, last, type)
+
+        steps += 14
     }
-
-    if(first < lower -1) steps += this.quicksort(first,lower-1)
-    if(lower < last) steps += this.quicksort(lower,last)
-
-    steps+=14
     return steps
 }
