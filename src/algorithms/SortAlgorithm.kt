@@ -4,7 +4,7 @@ import misc.*
 import kotlin.random.Random
 
 abstract class SortAlgorithm {
-    abstract fun <T> sort(items: Array<T>): Long where T:Number, T:Comparable<T>
+    abstract fun <T> sort(items: Array<T>): Long where T: Number, T:Comparable<T>
     abstract fun getName(): String
 }
 
@@ -62,6 +62,41 @@ object RevInsertionSort : SortAlgorithm() {
         return "reverse insertion sort"
     }
 }
+
+object HeapSort : SortAlgorithm(){
+    override fun <T> sort(items: Array<T>): Long where T: Number, T: Comparable<T> {
+        var steps = 3L
+        val middle = items.size / 2 - 1
+
+        for (i in middle downTo 0) {
+            steps += 2L + heapify(items, items.size, i)
+        }
+
+        for (i in items.lastIndex downTo 0) {
+            items[0] = items[i] { items[i] = items[0] }
+            steps += 4L + heapify(items, i, 0)
+        }
+        return steps
+    }
+
+    private fun <T> heapify(arr: Array<T>, heapSize: Int, root: Int): Long where T: Number, T: Comparable<T> {
+        var largest = root
+        val leftNode = 2 * root + 1
+        val rightNode = 2 * root + 2
+        if (leftNode < heapSize && arr[leftNode] > arr[largest]) largest = leftNode
+        if (rightNode < heapSize && arr[rightNode] > arr[largest]) largest = rightNode
+
+        return  if (largest != root) {
+            arr[root] = arr[largest] { arr[largest] = arr[root] }
+            13L + heapify(arr, heapSize, largest)
+        } else 10L
+    }
+
+    override fun getName(): String {
+        return "Heap Sort"
+    }
+}
+
 
 /*
 object SelectionSort : SortAlgorithm() {
