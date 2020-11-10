@@ -1,8 +1,6 @@
-package lista06
+package list06
 
 
-import algorithms.SortAlgorithm
-import algorithms.quicksort
 import misc.Pivot
 import misc.invoke
 import kotlin.random.Random

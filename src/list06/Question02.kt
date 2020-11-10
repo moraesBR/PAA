@@ -1,4 +1,4 @@
-package lista06
+package list06
 
 import algorithms.HeapSort
 import java.io.File
